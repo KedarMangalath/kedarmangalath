@@ -1,9 +1,9 @@
 "use client"
 
 // TODO: Replace placeholder URLs with your actual profile links
-const GITHUB_URL = "https://github.com/kedar-mangalath"        // ← update
-const LINKEDIN_URL = "https://linkedin.com/in/kedar-mangalath" // ← update
-const HF_URL = "https://huggingface.co/kedar-mangalath"         // ← update
+const GITHUB_URL = "https://github.com/KedarMangalath"
+const LINKEDIN_URL = "https://www.linkedin.com/in/kedar-mangalath-7a06a4216/"
+const HF_URL = "https://huggingface.co/mangalathkedar"
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"

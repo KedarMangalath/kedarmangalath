@@ -94,7 +94,7 @@ export default function About() {
           >
             Currently building production-grade AI systems at GAUDE Business & Infrastructure
             Solutions, Trivandrum. MCA graduate from Amrita Vishwa Vidyapeetham, specialising
-            in AI and Data Science. Oracle OCI certified, with deep expertise in Google Cloud Platform (GCP) and Vertex AI.
+            in AI and Data Science. Oracle OCI Foundations certified, with deep expertise in Google Cloud Platform (GCP) and Vertex AI.
           </motion.p>
 
           {/* Key focus areas */}
