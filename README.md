@@ -13,7 +13,6 @@ Python, React, Django, LangChain, Vertex AI, PostgreSQL, Docker
 - Hugging Face: https://huggingface.co/mangalathkedar
 - LinkedIn: https://www.linkedin.com/in/kedar-mangalath-7a06a4216/
 ---
-## Notes
 Interested in:
 - GenAI systems in production
 - Multimodal AI
