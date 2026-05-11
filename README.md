@@ -5,6 +5,8 @@ Currently building:
 - Agentic workflows for real-world systems
 - Enterprise RAG pipelines
 - Multimodal + Malayalam AI
+
+https://kedarmangalath.vercel.app/
 ---
 ## Stack
 Python, Django, React, Langchain, Langraph 
