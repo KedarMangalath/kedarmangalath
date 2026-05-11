@@ -7,8 +7,7 @@ Currently building:
 - Multimodal + Malayalam AI
 ---
 ## Stack
-Python, React, Django, LangChain, Vertex AI, PostgreSQL, Docker
----
+Python, Django, React, Langchain, Langraph 
 ## Links
 - Hugging Face: https://huggingface.co/mangalathkedar
 - LinkedIn: https://www.linkedin.com/in/kedar-mangalath-7a06a4216/
