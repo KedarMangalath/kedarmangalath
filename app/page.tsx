@@ -143,9 +143,8 @@ export default function Portfolio() {
                 Kedar<br />Mangalath
               </motion.h1>
               <motion.p variants={itemVariants} className="home-bio">
-                Building production AI systems — RAG pipelines,<br />
-                multi-agent orchestration, and full-stack applications.<br />
-                Based in Trivandrum, India.
+                AI Engineer specializing in Generative AI, LLMs, and production-grade systems. I build and deploy RAG pipelines, agentic workflows, and multimodal applications—taking AI from experimentation to scalable, real-world solutions.<br /><br />
+                Committed to continuous learning and eager to contribute to innovative teams. Based in Trivandrum, India. Always happy to connect, converse, and collaborate!
               </motion.p>
               <motion.div variants={itemVariants} className="home-links">
                 <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }} href="mailto:mangalathkedar@gmail.com">Email</motion.a>
