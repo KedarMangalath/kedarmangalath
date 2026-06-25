@@ -1,32 +1,16 @@
 import type { Metadata } from "next"
-import { Bebas_Neue, Syne, JetBrains_Mono } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css"
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-bebas",
-  display: "swap",
-})
-
-const syne = Syne({
-  weight: ["400", "600", "700", "800"],
-  subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  weight: ["300", "400", "500"],
-  subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-inter",
   display: "swap",
 })
 
 export const metadata: Metadata = {
-  title: "Kedar Mangalath — Full Stack AI/ML Engineer",
-  description:
-    "Portfolio of Kedar Mangalath, Full Stack AI/ML Engineer specializing in LLM-powered solutions, RAG architectures, and intelligent production systems.",
+  title: "Kedar Mangalath",
+  description: "Building production AI systems — RAG pipelines, multi-agent orchestration, and full-stack applications.",
 }
 
 export default function RootLayout({
@@ -35,9 +19,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${syne.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable}`}
     >
-      <body className="antialiased bg-bg">{children}</body>
+      <body>{children}</body>
     </html>
   )
 }
