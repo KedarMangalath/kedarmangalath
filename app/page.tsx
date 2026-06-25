@@ -54,8 +54,44 @@ const navItems: { id: Page; label: string }[] = [
   { id: "contact", label: "Contact" },
 ]
 
+const projectsData = [
+  {
+    id: "thanal",
+    name: "Thanal — Travel Assistant",
+    shortDesc: "Cross-platform travel assistant app with live UV forecasts, OSRM routing, and community-sourced POI data.",
+    detailedDesc: "A comprehensive cross-platform application recommending optimal seating arrangements on public transit based on highly accurate solar-position mathematics. It scores routes for heat, glare, and rain risk using live weather APIs and UV forecasts. Features include an interactive community-sourced POI map, reverse-geocoding, upvote-based accuracy scoring, and dynamic routing powered by OSRM.",
+    tags: ["React", "React Native", "Node.js", "Gemini API"],
+    link: "https://thanal-web.vercel.app/"
+  },
+  {
+    id: "devhub",
+    name: "AI-Native Workspace (DevHub)",
+    shortDesc: "Agentic IDE with multi-agent orchestration, in-browser editor, and GitHub OAuth for issue management.",
+    detailedDesc: "An advanced, fully integrated browser-based IDE leveraging a multi-agent AI orchestration system (featuring distinct Planner, Coder, Reviewer, and Coordinator agents). The workspace features real-time code execution within a secure containerized sandbox, seamless GitHub OAuth integration for PR and issue lifecycle management, and a live Monaco editor. It intelligently auto-generates deep architecture diagrams and Mermaid blueprints by analyzing repository ASTs in real-time.",
+    tags: ["Django", "React", "LangChain", "Docker", "PostgreSQL"],
+    link: "https://github.com/KedarMangalath/devhub"
+  },
+  {
+    id: "orpheus",
+    name: "Orpheus 3B TTS — Malayalam",
+    shortDesc: "Fine-tuned Orpheus 3B on Malayalam audio using LoRA adapters. Full data pipeline.",
+    detailedDesc: "A highly specialized text-to-speech model achieved by fine-tuning the Orpheus 3B architecture natively on an expansive Malayalam audio dataset. Employing parameter-efficient fine-tuning (PEFT) through LoRA adapters via Unsloth, the project encompassed a robust end-to-end data pipeline: from deep audio noise reduction and silence stripping to precise phoneme-transcript alignment. Extensive evaluation metrics (WER, CER, and MOS) were systematically tracked across multi-GPU training runs.",
+    tags: ["PyTorch", "Unsloth", "PEFT", "HuggingFace"],
+    link: "#"
+  },
+  {
+    id: "multimodal",
+    name: "Multimodal Similarity Search",
+    shortDesc: "Multimodal RAG system for Malayalam manuscript word recognition using vision-language embeddings.",
+    detailedDesc: "A sophisticated Multimodal Retrieval-Augmented Generation (RAG) system engineered for optical character recognition and semantic search over ancient Malayalam manuscripts. It utilizes SigLIP2 and custom-trained CLIP models to project both visual manuscript crops and semantic text queries into a shared dense vector space. A high-performance vector database enables near-instant statistical similarity matching and precise spatial localization of historical linguistics.",
+    tags: ["SigLIP2", "CLIP", "PyTorch", "Vector DB"],
+    link: "#"
+  }
+];
+
 export default function Portfolio() {
   const [activePage, setActivePage] = useState<Page>("home")
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null)
 
   return (
     <div className="shell">
@@ -102,7 +138,7 @@ export default function Portfolio() {
               exit="exit"
               className="stagger"
             >
-              <motion.p variants={itemVariants} className="home-eyebrow">Full Stack AI Engineer</motion.p>
+              <motion.p variants={itemVariants} className="home-eyebrow">Full Stack AI/ML Engineer</motion.p>
               <motion.h1 variants={itemVariants} className="home-name">
                 Kedar<br />Mangalath
               </motion.h1>
@@ -133,7 +169,7 @@ export default function Portfolio() {
               
               <div className="grid-layout">
                 {/* Box 1 */}
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
                   <div className="entry-meta">
                     <p className="entry-company">GAUDE Solutions</p>
                     <p className="entry-date">Dec 2024 – Present</p>
@@ -148,7 +184,7 @@ export default function Portfolio() {
                 </motion.div>
 
                 {/* Box 2 */}
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
                   <div className="entry-meta">
                     <p className="entry-company">GAUDE Solutions</p>
                     <p className="entry-date">Oct – Dec 2024</p>
@@ -163,7 +199,7 @@ export default function Portfolio() {
                 </motion.div>
 
                 {/* Box 3 */}
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
                   <div className="entry-meta">
                     <p className="entry-company">Amrita Vishwa Vidyapeetham</p>
                     <p className="entry-date">2022 – 2024</p>
@@ -174,7 +210,7 @@ export default function Portfolio() {
                 </motion.div>
 
                 {/* Box 4 */}
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
                   <div className="entry-meta">
                     <p className="entry-company">Amrita Vishwa Vidyapeetham</p>
                     <p className="entry-date">2019 – 2022</p>
@@ -199,65 +235,50 @@ export default function Portfolio() {
               <motion.p variants={itemVariants} className="label">Projects</motion.p>
 
               <div className="grid-layout">
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
-                  <div className="project-row">
-                    <span className="project-name">Thanal</span>
-                  </div>
-                  <p className="project-desc">
-                    Cross-platform travel assistant app with live UV forecasts, OSRM
-                    routing, and community-sourced POI data.
-                  </p>
-                  <div className="tags">
-                    <span className="tag">React</span>
-                    <span className="tag">React Native</span>
-                    <span className="tag">Gemini API</span>
-                  </div>
-                  <a className="project-link" href="https://thanal-web.vercel.app/" target="_blank" rel="noopener">Link</a>
-                </motion.div>
+                {projectsData.map((project) => (
+                  <motion.div 
+                    key={project.id}
+                    layout
+                    variants={itemVariants} 
+                    className="grid-cell" 
+                    onHoverStart={() => setHoveredProject(project.id)}
+                    onHoverEnd={() => setHoveredProject(null)}
+                    whileHover={{ backgroundColor: "var(--pill-bg)", zIndex: 10 }} 
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <motion.div layout className="project-row">
+                      <span className="project-name">{project.name}</span>
+                    </motion.div>
+                    
+                    <motion.p layout className="project-desc">
+                      {project.shortDesc}
+                    </motion.p>
 
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
-                  <div className="project-row">
-                    <span className="project-name">AI-Native Workspace</span>
-                  </div>
-                  <p className="project-desc">
-                    Agentic IDE with multi-agent orchestration, in-browser editor, and
-                    GitHub OAuth for issue management.
-                  </p>
-                  <div className="tags">
-                    <span className="tag">Django</span>
-                    <span className="tag">LangChain</span>
-                    <span className="tag">Docker</span>
-                  </div>
-                </motion.div>
+                    <AnimatePresence>
+                      {hoveredProject === project.id && (
+                        <motion.p 
+                          layout
+                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                          animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                          className="project-detailed"
+                        >
+                          {project.detailedDesc}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
 
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
-                  <div className="project-row">
-                    <span className="project-name">Orpheus 3B TTS</span>
-                  </div>
-                  <p className="project-desc">
-                    Fine-tuned Orpheus 3B on Malayalam audio using LoRA adapters. Full data pipeline.
-                  </p>
-                  <div className="tags">
-                    <span className="tag">PyTorch</span>
-                    <span className="tag">Unsloth</span>
-                    <span className="tag">PEFT</span>
-                  </div>
-                </motion.div>
-
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
-                  <div className="project-row">
-                    <span className="project-name">Multimodal Search</span>
-                  </div>
-                  <p className="project-desc">
-                    Multimodal RAG system for Malayalam manuscript word recognition
-                    using vision-language embeddings.
-                  </p>
-                  <div className="tags">
-                    <span className="tag">SigLIP2</span>
-                    <span className="tag">CLIP</span>
-                    <span className="tag">Vector DB</span>
-                  </div>
-                </motion.div>
+                    <motion.div layout className="tags">
+                      {project.tags.map(tag => (
+                        <span key={tag} className="tag">{tag}</span>
+                      ))}
+                    </motion.div>
+                    {project.link !== "#" && (
+                      <motion.a layout className="project-link" href={project.link} target="_blank" rel="noopener">Link</motion.a>
+                    )}
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           )}
@@ -274,7 +295,7 @@ export default function Portfolio() {
               <motion.p variants={itemVariants} className="label">Skills</motion.p>
 
               <div className="grid-layout">
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
                   <p className="skill-cat">Languages & Frameworks</p>
                   <ul className="skill-items">
                     <li>Python · Django</li>
@@ -283,7 +304,7 @@ export default function Portfolio() {
                   </ul>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
                   <p className="skill-cat">AI / ML</p>
                   <ul className="skill-items">
                     <li>LangChain · LangGraph</li>
@@ -292,7 +313,7 @@ export default function Portfolio() {
                   </ul>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
                   <p className="skill-cat">Cloud & DevOps</p>
                   <ul className="skill-items">
                     <li>GCP · Vertex AI</li>
@@ -301,7 +322,7 @@ export default function Portfolio() {
                   </ul>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ y: -2, backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
                   <p className="skill-cat">Databases</p>
                   <ul className="skill-items">
                     <li>PostgreSQL</li>
@@ -326,22 +347,53 @@ export default function Portfolio() {
                 Let's work<br />together.
               </motion.h2>
 
-              <div>
-                <motion.a variants={itemVariants} whileHover={{ x: 6, opacity: 0.6 }} className="contact-row" href="mailto:mangalathkedar@gmail.com">
-                  <span>Email</span>
-                  <span>mangalathkedar@gmail.com</span>
+              <div className="grid-layout">
+                <motion.a 
+                  variants={itemVariants} 
+                  className="grid-cell contact-cell" 
+                  href="mailto:mangalathkedar@gmail.com"
+                  whileHover={{ backgroundColor: "var(--pill-bg)" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="contact-label">Email</span>
+                  <span className="contact-value">mangalathkedar@gmail.com</span>
                 </motion.a>
-                <motion.a variants={itemVariants} whileHover={{ x: 6, opacity: 0.6 }} className="contact-row" href="tel:+918281912910">
-                  <span>Phone</span>
-                  <span>+91 82819 12910</span>
+
+                <motion.a 
+                  variants={itemVariants} 
+                  className="grid-cell contact-cell" 
+                  href="tel:+918281912910"
+                  whileHover={{ backgroundColor: "var(--pill-bg)" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="contact-label">Phone</span>
+                  <span className="contact-value">+91 82819 12910</span>
                 </motion.a>
-                <motion.a variants={itemVariants} whileHover={{ x: 6, opacity: 0.6 }} className="contact-row" href="https://www.linkedin.com/in/kedar-mangalath-7a06a4216/" target="_blank" rel="noopener">
-                  <span>LinkedIn</span>
-                  <span>kedar-mangalath-7a06a4216</span>
+
+                <motion.a 
+                  variants={itemVariants} 
+                  className="grid-cell contact-cell" 
+                  href="https://www.linkedin.com/in/kedar-mangalath-7a06a4216/" 
+                  target="_blank" 
+                  rel="noopener"
+                  whileHover={{ backgroundColor: "var(--pill-bg)" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="contact-label">LinkedIn</span>
+                  <span className="contact-value">kedar-mangalath-7a06a4216</span>
                 </motion.a>
-                <motion.a variants={itemVariants} whileHover={{ x: 6, opacity: 0.6 }} className="contact-row" href="https://github.com/KedarMangalath" target="_blank" rel="noopener">
-                  <span>GitHub</span>
-                  <span>KedarMangalath</span>
+
+                <motion.a 
+                  variants={itemVariants} 
+                  className="grid-cell contact-cell" 
+                  href="https://github.com/KedarMangalath" 
+                  target="_blank" 
+                  rel="noopener"
+                  whileHover={{ backgroundColor: "var(--pill-bg)" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="contact-label">GitHub</span>
+                  <span className="contact-value">KedarMangalath</span>
                 </motion.a>
               </div>
             </motion.div>

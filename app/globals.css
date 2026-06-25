@@ -298,36 +298,48 @@ nav {
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  margin-bottom: 4dvh;
+  margin-bottom: 2dvh;
   color: var(--fg);
 }
 
-.contact-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5dvh 0;
-  border-top: 1px solid var(--border);
+.contact-cell {
   text-decoration: none;
-  color: var(--fg);
-  transition: opacity var(--dur-fast) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
 }
-.contact-row:last-child { border-bottom: 1px solid var(--border); }
-.contact-row:hover {
-  opacity: 0.5;
-}
-.contact-row span:first-child { font-size: var(--fs-sm); font-weight: 500; }
-.contact-row span:last-child  { font-size: var(--fs-sm); color: var(--muted); }
 
-.contact-row::after {
+.contact-label {
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1dvh;
+}
+
+.contact-value {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--fg);
+  word-break: break-all;
+}
+
+.contact-cell::after {
   content: '↗';
+  position: absolute;
+  top: 3dvh;
+  right: 4vw;
   font-size: var(--fs-xs);
   color: var(--muted);
   opacity: 0;
-  transition: opacity var(--dur-fast) var(--ease-out);
+  transform: translateX(-6px);
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-mid) var(--ease-spring);
 }
-.contact-row:hover::after {
+
+.contact-cell:hover::after {
   opacity: 1;
+  transform: translateX(0);
 }
 
 /* ─────────────── Footer ─────────────── */
@@ -351,7 +363,7 @@ footer span {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin-top: auto;
+  margin-top: 1dvh;
 }
 .tag {
   font-size: var(--fs-2xs);
@@ -361,6 +373,15 @@ footer span {
   border: 1px solid var(--border);
   padding: 2px 8px;
   border-radius: 12px;
+}
+
+/* Highly detailed description inline modal */
+.project-detailed {
+  font-size: var(--fs-sm);
+  color: var(--mid);
+  line-height: 1.6;
+  margin-bottom: 1.5dvh;
+  overflow: hidden;
 }
 
 /* ─────────────── Responsive ─────────────── */
