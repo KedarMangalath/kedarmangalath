@@ -239,13 +239,17 @@ export default function Portfolio() {
                   <motion.div 
                     key={project.id}
                     variants={itemVariants} 
-                    className="grid-cell" 
-                    style={{ position: "relative" }}
-                    onHoverStart={() => setHoveredProject(project.id)}
-                    onHoverEnd={() => setHoveredProject(null)}
+                    className="grid-cell"
                   >
                     <div className="project-row">
                       <span className="project-name">{project.name}</span>
+                      <button 
+                        className="project-expand-btn" 
+                        onClick={() => setHoveredProject(project.id)}
+                        title="View Details"
+                      >
+                        ↗
+                      </button>
                     </div>
                     
                     <p className="project-desc">
@@ -257,41 +261,47 @@ export default function Portfolio() {
                         <span key={tag} className="tag">{tag}</span>
                       ))}
                     </div>
-                    {project.link !== "#" && (
-                      <a className="project-link" href={project.link} target="_blank" rel="noopener">Link</a>
-                    )}
-
-                    <AnimatePresence>
-                      {hoveredProject === project.id && (
-                        <motion.div 
-                          className="project-modal"
-                          initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                          animate={{ opacity: 1, scale: 1, y: 0 }}
-                          exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                          transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-                        >
-                          <div className="project-row">
-                            <span className="project-name">{project.name}</span>
-                          </div>
-                          
-                          <p className="project-detailed">
-                            {project.detailedDesc}
-                          </p>
-
-                          <div className="tags">
-                            {project.tags.map(tag => (
-                              <span key={tag} className="tag">{tag}</span>
-                            ))}
-                          </div>
-                          {project.link !== "#" && (
-                            <a className="project-link-primary" href={project.link} target="_blank" rel="noopener">Visit Project</a>
-                          )}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
                   </motion.div>
                 ))}
               </div>
+
+              {/* Centered Overlay Modal */}
+              <AnimatePresence>
+                {hoveredProject && (
+                  <motion.div 
+                    className="modal-backdrop"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {/* Click outside to close */}
+                    <div className="absolute inset-0" onClick={() => setHoveredProject(null)} />
+                    
+                    <motion.div 
+                      className="modal-content"
+                      initial={{ y: 20, scale: 0.98, opacity: 0 }}
+                      animate={{ y: 0, scale: 1, opacity: 1 }}
+                      exit={{ y: 10, scale: 0.98, opacity: 0 }}
+                      transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                      onClick={(e) => e.stopPropagation()} /* Prevent closing when clicking inside modal */
+                    >
+                      <button className="modal-close" onClick={() => setHoveredProject(null)}>×</button>
+                      
+                      {projectsData.map(p => p.id === hoveredProject && (
+                        <div key={p.id}>
+                          <h3 className="modal-title">{p.name}</h3>
+                          <p className="modal-body">{p.detailedDesc}</p>
+                          
+                          {p.link !== "#" && (
+                            <a className="project-link-primary" href={p.link} target="_blank" rel="noopener">Visit Project</a>
+                          )}
+                        </div>
+                      ))}
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           )}
 
