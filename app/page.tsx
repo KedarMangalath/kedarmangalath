@@ -59,7 +59,7 @@ const projectsData = [
     id: "thanal",
     name: "Thanal — Travel Assistant",
     shortDesc: "Cross-platform travel assistant app with live UV forecasts, OSRM routing, and community-sourced POI data.",
-    detailedDesc: "A comprehensive cross-platform application recommending optimal seating arrangements on public transit based on highly accurate solar-position mathematics. It scores routes for heat, glare, and rain risk using live weather APIs and UV forecasts. Features include an interactive community-sourced POI map, reverse-geocoding, upvote-based accuracy scoring, and dynamic routing powered by OSRM.",
+    detailedDesc: "Inspired by the 'Undo Universe' and the simple brilliance of apps like Veyil, Thanal started from a tiny thought during a train ride to Trivandrum: why not build more weirdly specific internet tools to solve everyday travel annoyances?\n\nAt its core, Thanal predicts which side of a bus or train gets less sunlight so you don't get cooked alive during long trips. But as I built it, the vision expanded to tackle the silent sufferings of travel—from hidden highway cameras to roads that destroy suspensions, to questionable petrol pump bathrooms. It now features an experimental community reporting system, and is slowly evolving into a comprehensive, community-driven travel companion.",
     tags: ["React", "React Native", "Node.js", "Gemini API"],
     link: "https://thanal-web.vercel.app/"
   },

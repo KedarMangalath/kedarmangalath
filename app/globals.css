@@ -455,6 +455,8 @@ footer span {
   color: var(--mid);
   line-height: 1.7;
   margin-bottom: 3dvh;
+  text-align: justify;
+  white-space: pre-wrap;
 }
 
 .project-expand-btn {
