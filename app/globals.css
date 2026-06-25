@@ -266,16 +266,42 @@ nav {
 }
 
 .project-link {
-  display: inline-block;
-  margin-top: 1dvh;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 6px 14px;
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: 20px;
   font-size: var(--fs-xs);
-  color: var(--muted);
   text-decoration: none;
+  font-weight: 500;
   letter-spacing: 0.04em;
-  transition: color var(--dur-fast) var(--ease-out);
+  transition: transform var(--dur-fast) var(--ease-spring), opacity var(--dur-fast) var(--ease-out);
 }
-.project-link:hover { color: var(--fg); }
-.project-link::after { content: ' ↗'; }
+.project-link:hover { transform: translateY(-2px); opacity: 0.9; }
+.project-link::after { content: ' ↗'; margin-left: 4px; }
+
+.project-link-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  margin-top: 2dvh;
+  padding: 8px 16px;
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: 20px;
+  font-size: var(--fs-xs);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: transform var(--dur-fast) var(--ease-spring), opacity var(--dur-fast) var(--ease-out);
+}
+.project-link-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+.project-link-primary::after { content: ' ↗'; margin-left: 4px; }
 
 /* ─────────────── Skill Items ─────────────── */
 .skill-cat {
@@ -363,7 +389,8 @@ footer span {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin-top: 1dvh;
+  margin-top: 1.5dvh;
+  margin-bottom: 1.5dvh;
 }
 .tag {
   font-size: var(--fs-2xs);
@@ -375,13 +402,26 @@ footer span {
   border-radius: 12px;
 }
 
-/* Highly detailed description inline modal */
+/* Highly detailed description floating modal */
+.project-modal {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  background: var(--bg);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
 .project-detailed {
   font-size: var(--fs-sm);
   color: var(--mid);
   line-height: 1.6;
-  margin-bottom: 1.5dvh;
-  overflow: hidden;
 }
 
 /* ─────────────── Responsive ─────────────── */

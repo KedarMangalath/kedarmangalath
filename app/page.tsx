@@ -169,7 +169,7 @@ export default function Portfolio() {
               
               <div className="grid-layout">
                 {/* Box 1 */}
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell">
                   <div className="entry-meta">
                     <p className="entry-company">GAUDE Solutions</p>
                     <p className="entry-date">Dec 2024 – Present</p>
@@ -184,7 +184,7 @@ export default function Portfolio() {
                 </motion.div>
 
                 {/* Box 2 */}
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell">
                   <div className="entry-meta">
                     <p className="entry-company">GAUDE Solutions</p>
                     <p className="entry-date">Oct – Dec 2024</p>
@@ -199,7 +199,7 @@ export default function Portfolio() {
                 </motion.div>
 
                 {/* Box 3 */}
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell">
                   <div className="entry-meta">
                     <p className="entry-company">Amrita Vishwa Vidyapeetham</p>
                     <p className="entry-date">2022 – 2024</p>
@@ -210,7 +210,7 @@ export default function Portfolio() {
                 </motion.div>
 
                 {/* Box 4 */}
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell">
                   <div className="entry-meta">
                     <p className="entry-company">Amrita Vishwa Vidyapeetham</p>
                     <p className="entry-date">2019 – 2022</p>
@@ -238,45 +238,57 @@ export default function Portfolio() {
                 {projectsData.map((project) => (
                   <motion.div 
                     key={project.id}
-                    layout
                     variants={itemVariants} 
                     className="grid-cell" 
+                    style={{ position: "relative" }}
                     onHoverStart={() => setHoveredProject(project.id)}
                     onHoverEnd={() => setHoveredProject(null)}
-                    whileHover={{ backgroundColor: "var(--pill-bg)", zIndex: 10 }} 
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <motion.div layout className="project-row">
+                    <div className="project-row">
                       <span className="project-name">{project.name}</span>
-                    </motion.div>
+                    </div>
                     
-                    <motion.p layout className="project-desc">
+                    <p className="project-desc">
                       {project.shortDesc}
-                    </motion.p>
+                    </p>
 
-                    <AnimatePresence>
-                      {hoveredProject === project.id && (
-                        <motion.p 
-                          layout
-                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                          animate={{ opacity: 1, height: "auto", marginTop: 8 }}
-                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                          className="project-detailed"
-                        >
-                          {project.detailedDesc}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-
-                    <motion.div layout className="tags">
+                    <div className="tags">
                       {project.tags.map(tag => (
                         <span key={tag} className="tag">{tag}</span>
                       ))}
-                    </motion.div>
+                    </div>
                     {project.link !== "#" && (
-                      <motion.a layout className="project-link" href={project.link} target="_blank" rel="noopener">Link</motion.a>
+                      <a className="project-link" href={project.link} target="_blank" rel="noopener">Link</a>
                     )}
+
+                    <AnimatePresence>
+                      {hoveredProject === project.id && (
+                        <motion.div 
+                          className="project-modal"
+                          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                        >
+                          <div className="project-row">
+                            <span className="project-name">{project.name}</span>
+                          </div>
+                          
+                          <p className="project-detailed">
+                            {project.detailedDesc}
+                          </p>
+
+                          <div className="tags">
+                            {project.tags.map(tag => (
+                              <span key={tag} className="tag">{tag}</span>
+                            ))}
+                          </div>
+                          {project.link !== "#" && (
+                            <a className="project-link-primary" href={project.link} target="_blank" rel="noopener">Visit Project</a>
+                          )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </motion.div>
                 ))}
               </div>
@@ -295,7 +307,7 @@ export default function Portfolio() {
               <motion.p variants={itemVariants} className="label">Skills</motion.p>
 
               <div className="grid-layout">
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell">
                   <p className="skill-cat">Languages & Frameworks</p>
                   <ul className="skill-items">
                     <li>Python · Django</li>
@@ -304,7 +316,7 @@ export default function Portfolio() {
                   </ul>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell">
                   <p className="skill-cat">AI / ML</p>
                   <ul className="skill-items">
                     <li>LangChain · LangGraph</li>
@@ -313,7 +325,7 @@ export default function Portfolio() {
                   </ul>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell">
                   <p className="skill-cat">Cloud & DevOps</p>
                   <ul className="skill-items">
                     <li>GCP · Vertex AI</li>
@@ -322,7 +334,7 @@ export default function Portfolio() {
                   </ul>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="grid-cell" whileHover={{ backgroundColor: "var(--pill-bg)" }} transition={{ duration: 0.2 }}>
+                <motion.div variants={itemVariants} className="grid-cell">
                   <p className="skill-cat">Databases</p>
                   <ul className="skill-items">
                     <li>PostgreSQL</li>
@@ -352,8 +364,6 @@ export default function Portfolio() {
                   variants={itemVariants} 
                   className="grid-cell contact-cell" 
                   href="mailto:mangalathkedar@gmail.com"
-                  whileHover={{ backgroundColor: "var(--pill-bg)" }}
-                  transition={{ duration: 0.2 }}
                 >
                   <span className="contact-label">Email</span>
                   <span className="contact-value">mangalathkedar@gmail.com</span>
@@ -363,8 +373,6 @@ export default function Portfolio() {
                   variants={itemVariants} 
                   className="grid-cell contact-cell" 
                   href="tel:+918281912910"
-                  whileHover={{ backgroundColor: "var(--pill-bg)" }}
-                  transition={{ duration: 0.2 }}
                 >
                   <span className="contact-label">Phone</span>
                   <span className="contact-value">+91 82819 12910</span>
@@ -376,8 +384,6 @@ export default function Portfolio() {
                   href="https://www.linkedin.com/in/kedar-mangalath-7a06a4216/" 
                   target="_blank" 
                   rel="noopener"
-                  whileHover={{ backgroundColor: "var(--pill-bg)" }}
-                  transition={{ duration: 0.2 }}
                 >
                   <span className="contact-label">LinkedIn</span>
                   <span className="contact-value">kedar-mangalath-7a06a4216</span>
@@ -389,8 +395,6 @@ export default function Portfolio() {
                   href="https://github.com/KedarMangalath" 
                   target="_blank" 
                   rel="noopener"
-                  whileHover={{ backgroundColor: "var(--pill-bg)" }}
-                  transition={{ duration: 0.2 }}
                 >
                   <span className="contact-label">GitHub</span>
                   <span className="contact-value">KedarMangalath</span>
